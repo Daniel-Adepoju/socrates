@@ -1,4 +1,4 @@
-import { startVoiceSession } from "@/lib/actions/session.action"
+import { endVoiceSession, startVoiceSession } from "@/lib/actions/session.action"
 import { DEFAULT_VOICE, VOICE_SETTINGS } from "@/lib/constants"
 import { getVoice } from "@/lib/utils"
 import { useAuth } from "@clerk/nextjs"
@@ -216,6 +216,12 @@ export const useVapi = (book: Book) => {
     } catch (e) {
       console.log("Error starting VAPI session:", e)
       setCustomError("Failed to start the session. Please try again.")
+      if (sessionIdRef.current) {
+         endVoiceSession(sessionIdRef.current,0).catch((endErr) => {
+            console.log("Error ending session after failed start:", endErr) 
+      })
+      }
+      sessionIdRef.current = null
       setStatus("idle")
     }
   }
