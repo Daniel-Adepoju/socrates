@@ -3,12 +3,21 @@ import { Field, FieldError, FieldLabel } from "./ui/field";
 
 interface VoiceSelectorProps {
   field: any;
-  voices: { id: string; label: string; description?: string }[];
+  voiceOptions: any;
   isSubmitting?: boolean;
 }
 
 
-export default function VoiceSelector({ field, voices, isSubmitting }: VoiceSelectorProps) {
+export default function VoiceSelector({ field, voiceOptions, isSubmitting }: VoiceSelectorProps) {
+ 
+ const voices = Object.values(voiceOptions).map((v:any) => ({
+  id: v.id,
+  label: v.name,
+  description: v.description,
+ }))
+
+ console.log("Available voices:", voices)
+
   return (
     <Field>
       <FieldLabel className="text-brown mb-2">Choose Assistant Voice</FieldLabel>

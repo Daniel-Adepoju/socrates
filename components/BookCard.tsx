@@ -14,7 +14,7 @@ const BookCard = ({ book, index }: BookCardProps) => {
 
   return (
     <article className="w-60 flex flex-col items-center justify-center rounded-xl border border-white/10 bg-gray-200/50 p-4 shadow-lg backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-2xl">
-      <Link href={`/book/${book.slug}`} className="block">
+      <Link href={`/books/${book.slug}`} className="block">
         
         {/* COVER */}
         <div

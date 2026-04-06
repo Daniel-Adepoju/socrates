@@ -139,7 +139,8 @@ export const voiceCategories = {
 }
 
 // Default voice
-export const DEFAULT_VOICE = "rachel"
+// export const DEFAULT_VOICE = "rachel"
+export const DEFAULT_VOICE = "onwK4e9ZLuTAKqWW03F9"
 
 // ElevenLabs voice settings optimized for conversational AI
 export const VOICE_SETTINGS = {

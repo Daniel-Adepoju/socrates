@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { Show,SignInButton, UserButton, useUser } from "@clerk/nextjs"
 import { cn } from "@/lib/utils"
 import { Button } from "./ui/button"
+import { LogIn } from "lucide-react"
 
 const navItems: any = [
   { name: "Library", href: "/" ,showInMobile:true},
@@ -22,7 +23,7 @@ const Navbar = () => {
         <div className="logo">
           <Link
             href="/"
-            className="text-2xl font-bold text-yellow-600 "
+            className="text-xl font-bold text-yellow-600 "
           >
             SOCRATES
           </Link>
@@ -47,8 +48,8 @@ const Navbar = () => {
 
             <Show when="signed-out">
             <SignInButton mode="modal">
-              <Button className="text-sm font-bold self-center ml-1 px-6 py-4 h-12 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors">
-                Sign In
+              <Button className="text-sm font-bold self-center ml-1 px-4 py-3 h-10 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors">
+                <LogIn size={20} className="text-white"/>
               </Button>
             </SignInButton>
           </Show>

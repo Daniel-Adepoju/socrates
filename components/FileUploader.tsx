@@ -32,7 +32,7 @@ export default function FileUploader({
         }`}
       >
         <p className="text-sm text-gray-600">
-          {field.value?.name ?? `Click to upload ${label.toLowerCase()}`}
+          {field.value?.[0]?.name ?? `Click to upload ${label.toLowerCase()}`}
         </p>
 
         <Input
@@ -44,6 +44,7 @@ export default function FileUploader({
           onChange={(e) => {
             const file = e?.target?.files; // safe null fallback
             field.onChange(file);
+            console.log("Selected file:", field);
           }}
           disabled={isSubmitting}
         />

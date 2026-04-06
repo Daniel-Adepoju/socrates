@@ -21,17 +21,17 @@ export default function HeroSection() {
             Store, search, and interact with your PDFs using AI.
           </p>
 
-          <div className="flex gap-4">
+          <div className="flex w-full gap-4">
             <Link
               href="/books/add-new"
-              className="rounded-lg bg-yellow-600 px-6 py-3 text-sm font-semibold text-white hover:bg-yellow-500 transition shadow-lg shadow-yellow-500/20"
+              className=" lg:w-90 flex items-center justify-center rounded-lg bg-yellow-600 px-6 py-3 text-sm font-semibold text-white hover:bg-yellow-500 transition shadow-lg shadow-yellow-500/20"
             >
               Add Book
             </Link>
 
             <Link
               href="/library"
-              className="rounded-lg border border-white/10 px-6 py-3 text-sm text-gray-300 hover:bg-white/5 transition"
+              className="lg:w-60 flex items-center justify-center lg:text-center rounded-lg border border-white/10 px-6 py-3 text-sm text-gray-300 hover:bg-white/5 transition"
             >
               View Library
             </Link>
