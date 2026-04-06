@@ -12,14 +12,14 @@ const BooksSection = async () => {
         Your List
       </h2>
       <div className="grid gap-8 xl:gap-60 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 place-items-center  px-2">
-        {/* {books.map((book,index) => (
+        {books.map((book,index) => (
           <BookCard
             key={book._id}
             book={book}
             index={index}
           />
-        ))} */}
-        {books.length > 0 && (
+        ))}
+        {books.length === 0 && (
           <div className="min-w-full mx-auto col-span-full flex flex-col item-center justify-center gap-4">
             <BookPlus
               size={80}
