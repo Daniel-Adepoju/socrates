@@ -4,13 +4,16 @@ import { escapeRegex, generateSlug, serializeData } from "../utils"
 import Book from "@/app/database/models/book.model"
 import BookSegment from "@/app/database/models/book-segment.model"
 import mongoose from "mongoose"
+import { revalidatePath } from "next/cache"
+import { auth } from "@clerk/nextjs/server"
 
 // # Get Book Actions
 
 export const getAllBooks = async () => {
   try {
+    const { userId } = await auth()
     await connectToDatabase()
-    const books = await Book.find().sort({ createdAt: -1 }).lean()
+    const books = await Book.find({clerkId: userId}).sort({ createdAt: -1 }).lean()
     return { success: true, data: serializeData(books) }
   } catch (e) {
     console.log("Error fetching books:", e)
@@ -68,6 +71,8 @@ export const createBook = async (data: any) => {
     })
 
     await book.save()
+
+    revalidatePath('/')
 
     return { success: true, book: serializeData(book) }
   } catch (e) {
