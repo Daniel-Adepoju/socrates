@@ -58,7 +58,7 @@ export const useVapi = (book: Book) => {
 
   const bookRef = useLatestRef(book)
   const durationRef = useLatestRef(duration)
-  const voice = book.persona || DEFAULT_VOICE
+  const voice = book?.persona || DEFAULT_VOICE
 
   const isActive =
     status === "listening" ||
@@ -73,7 +73,7 @@ export const useVapi = (book: Book) => {
   useEffect(() => {
     const vapi = getVapi()
 
-    // 🟢 CALL START
+    //  CALL START
     const handleCallStart = () => {
       isStoppingRef.current = false
       setStatus("starting")
@@ -144,6 +144,7 @@ export const useVapi = (book: Book) => {
 
       if (msg.role === "assistant" && msg.transcriptType === "final") {
         setMessages((prev) => [...prev, { role: "assistant", content: msg.transcript }])
+        setCurrentMessage("")
       }
 
     }

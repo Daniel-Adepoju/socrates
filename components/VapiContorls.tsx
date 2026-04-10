@@ -2,9 +2,10 @@
 
 import useVapi from "@/hooks/useVapi"
 import { DEFAULT_VOICE, voiceOptions } from "@/lib/constants"
-import { Mic, MicOff, StopCircle } from "lucide-react"
+import { Clipboard, Mic, MicOff, StopCircle } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useRef } from "react"
+import { toast } from "sonner"
 
 // const messages = [
 //   {
@@ -66,7 +67,7 @@ const VapiContorls = ({ book }: { book: Book }) => {
   }))
 
   const bookVoice = breakDownVoiceOptions.find((v) => v.id === book?.persona)?.label
-  console.log(messages)
+  // console.log(messages)
   return (
     <>
       {/* BOOK AREA */}
@@ -98,7 +99,7 @@ bg-amber-700/70 hover:bg-amber-800`}
             <span
               className={`
       relative z-10
-      ${status === 'connecting...' && 'opacity-45'} 
+      ${status === "connecting..." && "opacity-45"} 
       ${isActive ? "animate-bounce-fast" : ""}
     `}
             >
@@ -115,9 +116,11 @@ bg-amber-700/70 hover:bg-amber-800`}
 
         {/* Stats */}
         <div className="w-full flex flex-wrap gap-3 items-center justify-around mt-6  py-2 rounded-lg text-xs md:text-xs text-yellow-800">
-          <div className={`
+          <div
+            className={`
           ${status === "listening" ? "bg-yellow-200" : status === "thinking" ? "bg-yellow-300" : status === "speaking" ? "bg-yellow-400" : "bg-white"}
-          rounded-sm p-2 px-4 flex items-center gap-1 font-semibold`}>
+          rounded-sm p-2 px-4 flex items-center gap-1 font-semibold`}
+          >
             {" "}
             <StopCircle size={20} /> <span>{status.charAt(0).toUpperCase() + status.slice(1)}</span>
           </div>
@@ -165,6 +168,7 @@ bg-amber-700/70 hover:bg-amber-800`}
           <>
             {/* CHAT AREA */}
             <div className="flex-1 overflow-y-auto space-y-4 pr-2    transcript-messages">
+              {/* Mapped Messages */}
               {messages.map((msg, index) => {
                 const isUser = msg.role === "user"
 
@@ -184,11 +188,37 @@ bg-amber-700/70 hover:bg-amber-800`}
                     `}
                     >
                       {msg.content}
+                      <Clipboard
+                        size={16}
+                        className={`ml-auto cursor-pointer mt-4 ${isUser ? "text-gray-300" : "text-yellow-700"} hover:opacity-90 transition`}
+                        onClick={() => {
+                          navigator.clipboard.writeText(msg.content)
+                          toast("Copied to Cclipboard!")
+                        }}
+                      />
                     </div>
                   </div>
                 )
               })}
 
+              {/* Partial Messages */}
+              {/*  STREAMING USER */}
+              {currentUserMessage?.trim() && (
+                <div className="flex justify-end">
+                  <div className="max-w-[75%] px-4 py-3 text-sm shadow-md bg-amber-900/80 text-white rounded-2xl rounded-br-md">
+                    {currentUserMessage}
+                  </div>
+                </div>
+              )}
+
+              {/*  STREAMING ASSISTANT */}
+              {currentMessage?.trim() && (
+                <div className="flex justify-start">
+                  <div className="max-w-[75%] px-4 py-3 text-sm shadow-md bg-brown/20 text-yellow-900 rounded-2xl rounded-bl-md">
+                    {currentMessage}
+                  </div>
+                </div>
+              )}
               {/* 👇 scroll anchor */}
               <div ref={bottomRef} />
             </div>
