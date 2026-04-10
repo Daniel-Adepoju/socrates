@@ -3,7 +3,7 @@
 // import { useParams } from "next/navigation"
 
 import { getBookBySlug } from "@/lib/actions/book.actions"
-import VapiContorls from "@/components/VapiContorls"
+import VapiContorls from "@/components/VapiControls"
 // import { Button } from "@/components/ui/button"
 
 const SingleBook = async ({ params }: any) => {

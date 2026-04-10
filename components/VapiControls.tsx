@@ -38,7 +38,7 @@ import { toast } from "sonner"
 //   },
 // ]
 
-const VapiContorls = ({ book }: { book: Book }) => {
+const VapiControls = ({ book }: { book: Book }) => {
   const {
     status,
     messages,
@@ -193,7 +193,7 @@ bg-amber-700/70 hover:bg-amber-800`}
                         className={`ml-auto cursor-pointer mt-4 ${isUser ? "text-gray-300" : "text-yellow-700"} hover:opacity-90 transition`}
                         onClick={() => {
                           navigator.clipboard.writeText(msg.content)
-                          toast("Copied to Cclipboard!")
+                          toast("Copied to Clipboard!")
                         }}
                       />
                     </div>
@@ -236,4 +236,4 @@ bg-amber-700/70 hover:bg-amber-800`}
   )
 }
 
-export default VapiContorls
+export default VapiControls
