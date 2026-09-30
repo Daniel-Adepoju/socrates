@@ -24,7 +24,22 @@ const monaSans = Mona_Sans({
 export const metadata: Metadata = {
   title: "Socrates",
   description: "Make your book interactive with AI",
-}
+
+  icons: {
+    icon: [
+      {
+        url: "/logo.png",
+        type: "image/png",
+      },
+    ],
+    apple: "/logo.png",
+  },
+
+  viewport: {
+    width: "device-width",
+    initialScale: 1.5,
+  },
+};
 
 export default function RootLayout({
   children,

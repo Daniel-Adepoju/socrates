@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import Image from 'next/image'
 import { usePathname } from "next/navigation"
 
 import { Show,SignInButton, UserButton, useUser } from "@clerk/nextjs"
@@ -19,13 +20,21 @@ const Navbar = () => {
 
   return (
     <header className="w-full fixed z-50 bg-(--bg-primary) border-b border-(--border-primary) backdrop-blur-sm">
-      <div className="wrapper navbar-height py-4 flex items-center justify-between">
-        <div className="logo">
+      <div className="px-4 md:px-6 lg:px-8 navbar-height py-4 flex items-center justify-between">
+        <div className="logo justify-self-start">
           <Link
             href="/"
-            className="text-xl font-bold text-yellow-600 "
+            className="flex items-center gap-2"
           >
-            SOCRATES
+           
+            <Image 
+            width={1000}
+            height={1000}
+            alt='logo'
+            src='/logo.png'
+            className='w-10 h-12 cursor-pointer'
+            />
+             <span className="text-xl font-bold text-yellow-600">SOCRATES</span>
           </Link>
         </div>
         <nav className="flex items-center space-x-4 md:space-x-8">
