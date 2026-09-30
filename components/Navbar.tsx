@@ -34,7 +34,7 @@ const Navbar = () => {
             src='/logo.png'
             className='w-10 h-12 cursor-pointer'
             />
-             <span className="text-xl font-bold text-yellow-600">SOCRATES</span>
+             <span className="hidden md:inline-block text-xl font-bold text-yellow-600">SOCRATES</span>
           </Link>
         </div>
         <nav className="flex items-center space-x-4 md:space-x-8">
